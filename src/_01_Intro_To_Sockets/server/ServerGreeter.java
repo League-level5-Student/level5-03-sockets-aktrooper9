@@ -10,7 +10,7 @@ public class ServerGreeter extends Thread {
 	public ServerGreeter() throws IOException {
 		// 2. Initialize the ServerSocket object. In the parameters,
 		// you must define the port at which the server will listen for connections.
-		socket = new ServerSocket();
+		socket = new ServerSocket(8080);
 		// *OPTIONAL* you can set a time limit for the server to wait by using the
 		// ServerSocket's setSoTimeout(int timeInMilliSeconds) method
 	}
@@ -26,6 +26,7 @@ public class ServerGreeter extends Thread {
 			// Put steps 8 - 15 in the try block.
 			try {		
 				// 8. Let the user know that the server is waiting for a client to connect.
+				System.out.println("Server is waiting for client to connect");
 				// 9. Create an object of the Socket class and initialize it to
 				// serverSocket.accept();
 				// Change serverSocket to match the ServerSocket member variable you created in
@@ -80,6 +81,11 @@ sock.close();
 	public static void main(String[] args) {
 		// 16. In a new thread, create an object of the ServerGreeter class and start
 		// the thread. Don't forget the try-catch.
-
+		try {
+			ServerGreeter servers= new ServerGreeter();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
