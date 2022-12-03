@@ -12,15 +12,29 @@ import _00_Click_Chat.networking.Server;
  */
 
 public class ChatApp {
-	Server server;
-	Client client;
+	Server2 server;
+	Client2 client;
 	
 	
 	public static void main(String[] args) {
-		new ButtonClicker();
+		new ChatApp();
+		System.out.println("Chat");
 	}
 	
 	public ChatApp(){
-	
+		int response = JOptionPane.showConfirmDialog(null, "Would you like to host a connection?", "ChatApp!", JOptionPane.YES_NO_OPTION);
+		if(response == JOptionPane.YES_OPTION){
+			server = new Server2(8080);
+			JOptionPane.showMessageDialog(null, "Server started at: " + server.getIPAddress() + "\nPort: " + server.getPort());
+			JOptionPane.showInputDialog("message");
+			server.start();
+			
+		}else{	
+		String ipStr = JOptionPane.showInputDialog("Enter the IP Address");
+		String prtStr = JOptionPane.showInputDialog("Enter the port number");
+		int port = Integer.parseInt(prtStr);
+		client = new Client2(ipStr, port);
+			client.start();
+		}
 	}
 }
